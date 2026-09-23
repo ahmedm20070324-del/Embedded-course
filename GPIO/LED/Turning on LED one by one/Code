@@ -1,0 +1,25 @@
+void setup() {
+  volatile char*d;
+  d=0x21;
+  *d=0xff;
+
+}
+void light(char a){
+  volatile char*x;
+  x=0x22;
+  *x=a;
+}
+// Rewrite:
+// Change delay loop to function
+void loop() {
+  char x;
+  volatile long i;
+  for(x=0;x<8;x++){
+    light((1<<x));
+    for(i=0;i<100000;i++);
+  }
+  for(x=7;x>=0;x--){
+    light((1<<x));
+    for(i=0;i<100000;i++);
+  }
+}
