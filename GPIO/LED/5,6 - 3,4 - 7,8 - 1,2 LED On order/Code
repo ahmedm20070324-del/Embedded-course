@@ -1,0 +1,28 @@
+void setup() {
+  volatile char*d;
+  d=0x21;
+  *d=0xff;
+
+}
+void light(long x){
+  volatile long*a;
+  a=0x22;
+  *a=x;
+}
+void loop(){
+  volatile long i;
+  long x,y,z;
+  z=0x00;
+  y=0x04;
+  for(x=0x30;y<=256;y=y*4){
+    light(x);
+    for(i=0;i<500000;i++);
+    z++;
+    if(z%2==1){
+      x=x/y;
+    }
+    else{
+      x=x*y;
+    }
+  }
+}
